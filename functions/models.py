@@ -3,8 +3,7 @@ import sqlite3
 
 class Schema:
     def __init__(self):
-        self.conn = sqlite3.connect('functions\\todo.db')
-        self.create_user_table()
+        self.conn = sqlite3.connect('functions/todo.db')
         self.create_to_do_table()
         # Why are we calling user table before to_do table
         # what happens if we swap them?
@@ -36,7 +35,7 @@ class ToDoModel:
    
 
     def __init__(self):
-        self.conn = sqlite3.connect('functions\\todo.db')
+        self.conn = sqlite3.connect('functions/todo.db')
         self.conn.row_factory = sqlite3.Row
 
     def __del__(self):
