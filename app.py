@@ -1,6 +1,10 @@
 from flask import Flask,request, redirect, render_template,url_for
 from functions.models import ToDoModel
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -56,6 +60,6 @@ def edit():
     return redirect(url_for('sql_database'))
 
 if __name__ == "__main__":
-    port = int(os.getenv('PORT', 5000))
+    port = int(os.getenv('PORT', 5001))
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(debug=debug, port=port, host='0.0.0.0')

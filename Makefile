@@ -15,6 +15,8 @@ help:
 	@echo "  install    - Install dependencies locally"
 	@echo "  test       - Run tests"
 	@echo "  dev        - Run in development mode (local)"
+	@echo "  local      - Run Flask locally with PostgreSQL in Docker"
+	@echo "  local-down - Stop PostgreSQL container"
 
 # Docker commands
 build:
@@ -43,6 +45,32 @@ dev:
 	@echo "Make sure PostgreSQL is running locally on port 5432"
 	@echo "Database: todoapp, User: postgres, Password: password"
 	python app.py
+
+# Local development with Docker PostgreSQL
+local:
+	@echo "Creating .env file for local development..."
+	@echo "DB_HOST=localhost" > .env
+	@echo "DB_NAME=todoapp" >> .env
+	@echo "DB_USER=postgres" >> .env
+	@echo "DB_PASSWORD=password" >> .env
+	@echo "DB_PORT=5432" >> .env
+	@echo "FLASK_DEBUG=True" >> .env
+	@echo "FLASK_ENV=development" >> .env
+	@echo "PORT=5001" >> .env
+	@echo "Starting PostgreSQL with Docker Compose..."
+	@docker-compose up -d db
+	@echo "Waiting for database to be ready..."
+	@sleep 5
+	@echo "Initializing database schema..."
+	@python -c "from functions.models import Schema; Schema()"
+	@echo "Starting Flask application locally..."
+	@echo "Application will be available at http://localhost:5001"
+	@python app.py
+
+# Stop local development
+local-down:
+	@echo "Stopping PostgreSQL container..."
+	@docker-compose stop db
 
 # Cleanup
 clean:
