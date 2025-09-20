@@ -28,7 +28,7 @@
         <form action = "edit" method = "POST">
          <p>ToDo Title: <input class="form-control" type = "text" name = "Title" style='width: 100%;' value='{{eresult["Title"]}}'/></p>
          <p>Description <input class="form-control" type = "text" name = "Description" style='width: 100%;' value='{{eresult["Description"]}}' /></p>
-         <p>DueDate: <input class="form-control" type = "text" name = "DueDate" style='width: 100%;' value='{{eresult["DueDate"]}}' /></p>
+         <p>DueDate: <input class="form-control" type = "date" name = "DueDate" style='width: 100%;' value='{{eresult["DueDate"]}}' /></p>
          
          <input type ="hidden" name = "old_ID" value='{{eresult["id"]}}' />
         
@@ -51,7 +51,7 @@
                <form action = "insert" method = "POST">
                 <p>Event Title: <input class="form-control" type = "text" name = "Title" style='width: 100%;' /></p>
                 <p>Description <input class="form-control" type = "text" name = "Description" style='width: 100%;' /></p>
-                <p>Date: <input class="form-control" type = "text" name = "DueDate" style='width: 100%;'/></p>
+                <p>Due Date: <input class="form-control" type = "date" name = "DueDate" style='width: 100%;'/></p>
                 <br>
        
                 <p><input class="btn-primary" type = "submit" value = "Insert Data" /></p>
