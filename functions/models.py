@@ -93,14 +93,17 @@ class ToDoModel:
         cur.execute(query,(title, description, due_date))
         self.conn.commit()
         
-    def sql_delete(self,ID):
-        print("Inside sql_delete",ID)
-        print("Type",type(ID))
-        query='''UPDATE "Todo" SET _is_deleted=1 where id=%s'''
-        print("Query",query)
+    def sql_delete(self, ID):
+        print("Inside sql_delete", ID)
+        print("Type", type(ID))
+        query = '''UPDATE "Todo" SET _is_deleted = TRUE WHERE id = %s'''
+        print("Query", query)
         cur = self.conn.cursor()
-        cur.execute(query,ID)
-        self.conn.commit()  
+        cur.execute(query, (ID,))
+        self.conn.commit()
+        cur.close()
+        print("Record marked as deleted successfully.")
+ 
 
     def sql_edit(self,var):
         # Validate and format the date
