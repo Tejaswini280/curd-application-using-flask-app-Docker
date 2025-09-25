@@ -60,6 +60,6 @@ def edit():
     return redirect(url_for('sql_database'))
 
 if __name__ == "__main__":
-    port = int(os.getenv('PORT', 5001))
+    port = int(os.getenv('PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(debug=debug, port=port, host='0.0.0.0')
